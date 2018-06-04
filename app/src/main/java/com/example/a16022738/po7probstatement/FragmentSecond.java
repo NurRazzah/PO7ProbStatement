@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.PermissionChecker;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static android.content.ContentValues.TAG;
 
 
 public class FragmentSecond extends Fragment {
@@ -66,9 +69,24 @@ public class FragmentSecond extends Fragment {
                 //  query the content provider
                 ContentResolver cr = getActivity().getContentResolver();
                 // The filter String
-                String filter="body LIKE ?";
+                String filter="body LIKE ? ";
                 // The matches for the ?
-                String[] filterArgs = {"%" + etRetrieve.getText().toString() + "%"};
+                String[] words = etRetrieve.getText().toString().split("\\s+");
+
+                String[] filterArgs = new String[words.length];
+
+                for(int i = 0; i < words.length;i++){
+                    filterArgs[i] = "%" + words[i] +  "%";
+
+                }
+
+                for(int i = 0; i < words.length-1;i++){
+                    filter += "OR body LIKE ? ";
+
+                }
+                Log.d(TAG, "onClick: " + filter);
+
+
                 // Fetch SMS Message from Built-in Content Provider
 
                 Cursor cursor = cr.query(uri, reqCols, filter, filterArgs, null);
