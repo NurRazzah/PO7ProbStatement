@@ -12,7 +12,7 @@
         android:id="@+id/tvFrag2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Only SMS containing this number" />
+        android:text="Only SMS containing word" />
 
     <EditText
         android:id="@+id/etWord"
@@ -31,5 +31,6 @@
     <TextView
         android:id="@+id/tvDisplayWord"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:text="TextView" />
 </LinearLayout>

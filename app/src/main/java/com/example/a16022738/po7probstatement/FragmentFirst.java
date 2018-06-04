@@ -66,7 +66,7 @@ public class FragmentFirst extends Fragment {
                 ContentResolver cr = getActivity().getContentResolver();
 
                 // The filter String
-                String filter="body LIKE ?";
+                String filter="address LIKE ?";
                 // The matches for the ?
                 String[] filterArgs = {"%" + etRetrieveNumber.getText().toString() + "%"};
                 // Fetch SMS Message from Built-in Content Provider
